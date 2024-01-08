@@ -56,11 +56,15 @@ const useMultiSelect = (): UseMultiSelectProps => {
   );
 
   const outsideClickHandler = (event: MouseEvent) => {
+    console.log(isOpen, "Why it is always false?")
     if (
       dropdownRef.current &&
       !dropdownRef.current.contains(event.target as Node)
     ) {
-      setIsOpen(false);
+      setIsOpen((prv) => {
+        console.log(prv, "Why does it work?")
+        return false
+      });
     }
   };
 
