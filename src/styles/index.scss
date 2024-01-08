@@ -1,0 +1,114 @@
+@use './global' as *;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+// reset
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+html {
+  line-height: 1.5;
+  tab-size: 4;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+body {
+  margin: 0;
+  @include spacing(padding, $y: px-to-rem(20), $x: px-to-rem(20));
+  background-color: $white;
+  min-height: 100vh;
+  font-size: px-to-rem(16);
+  color: $global-text;
+  font-family: 'Roboto', sans-serif;
+  line-height: inherit;
+  @include flex(flex, column, center, center);
+}
+
+.multi-select {
+  width: px-to-rem(300);
+  input {
+    width: 100%;
+    border-radius: px-to-rem(8);
+    background: no-repeat right 10px center
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E%0A");
+    background-size: 14px;
+    @include transition(all, 0.5s);
+    @include border(2px, solid, $light-gray);
+    @include spacing(margin, px-to-rem(4));
+    @include spacing(
+      padding,
+      $top: px-to-rem(8),
+      $left: px-to-rem(8),
+      $bottom: px-to-rem(8),
+      $right: px-to-rem(30)
+    );
+
+    &:focus {
+      @include border(2px, solid, $blue);
+      @include box-shadow(0, 0, 0, px-to-rem(3), $purple);
+    }
+  }
+  .dropdown {
+    border-radius: px-to-rem(8);
+    @include spacing(padding, $y: px-to-rem(5), $x: px-to-rem(8));
+    @include spacing(margin, $top: px-to-rem(8));
+    @include border(1px, solid, $light-gray);
+    ul li {
+      border-radius: px-to-rem(4);
+      @include flex(flex, row, space-between, center);
+      gap: px-to-rem(5);
+      cursor: pointer;
+      @include spacing(padding, $y: px-to-rem(4), $x: px-to-rem(6));
+      &:hover {
+        background-color: $purple;
+        color: $blue;
+      }
+      &:not(:last-child) {
+        @include spacing(margin, $bottom: px-to-rem(3));
+      }
+      svg {
+        width: px-to-rem(16);
+        height: px-to-rem(16);
+      }
+    }
+  }
+
+  .selected-items {
+    @include spacing(margin, $bottom: px-to-rem(8));
+    @include flex(flex, row, start, center, wrap);
+    gap: px-to-rem(4);
+    .selected-item {
+      @include border(1px, solid, $light-gray);
+      @include flex(flex, row, space-between, center);
+      gap: px-to-rem(4);
+      cursor: pointer;
+      border-radius: px-to-rem(4);
+      @include spacing(padding, $y: px-to-rem(2), $x: px-to-rem(4));
+      &:hover {
+        border-color: $blue;
+        color: $blue;
+      }
+      .remove-btn {
+        svg {
+          @include flex(flex, row, center, center);
+          width: px-to-rem(14);
+          height: px-to-rem(14);
+        }
+      }
+    }
+  }
+
+  svg.selected {
+    display: inline-block !important;
+  }
+}

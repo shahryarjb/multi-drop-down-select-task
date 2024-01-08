@@ -1,0 +1,6 @@
+@use './variables' as *;
+
+// convert px to rem
+@function px-to-rem($value) {
+  @return calc($value / $base-rem-size) * 1rem;
+}

@@ -1,0 +1,57 @@
+@use './variables' as *;
+@use './funtions';
+
+// General
+@mixin border($width: 1px, $style: solid, $color: #000) {
+  border: $width $style $color;
+}
+
+@mixin box-shadow(
+  $x: 0,
+  $y: 0,
+  $blur: 10px,
+  $spread: 0,
+  $color: rgba(0, 0, 0, 0.2)
+) {
+  box-shadow: $x $y $blur $spread $color;
+}
+
+@mixin transition(
+  $properties,
+  $duration: 0.3s,
+  $timing-function: ease,
+  $delay: 0s
+) {
+  transition: $properties $duration $timing-function $delay;
+}
+
+@mixin spacing(
+  $property,
+  $top: 0,
+  $right: 0,
+  $bottom: 0,
+  $left: 0,
+  $x: null,
+  $y: null
+) {
+  @if $x {
+    #{$property}: $y $x;
+  } @else {
+    #{$property}: $top $right $bottom $left;
+  }
+}
+
+// Layout
+@mixin flex(
+  $display: flex,
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $wrap: nowrap
+) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
